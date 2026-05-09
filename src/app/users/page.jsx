@@ -1,14 +1,20 @@
 import React from 'react';
 import { getUsers } from '../lib/data';
 import UserTable from '../Components/UserTable';
+import { deleteUser } from '../lib/actions';
+import AddUserModal from '../Components/AddUserModal';
 
 const UsersPage = async () => {
     const users= await getUsers()
     
     return (
-        <div>
-           <h2>User Management: {users.length}</h2> 
-           <UserTable users={users}></UserTable>
+        <div >
+           
+           <div className='flex justify-between p-5'><h2>User Management: {users.length}</h2> 
+           <AddUserModal/>
+           </div>
+           <UserTable users={users} deleteUserAction={deleteUser}></UserTable>
+           
         </div>
     );
 };
